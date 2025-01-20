@@ -1,0 +1,34 @@
+# CMake 관련 파일
+CMakeLists.txt
+cmake-build-debug/
+cmake-build-release/
+CMakeCache.txt
+CMakeFiles/
+Testing/
+Makefile
+install_manifest.txt
+compile_commands.json
+
+# IDE 관련 파일
+.idea/
+*.iml
+
+# 빌드 아티팩트 및 바이너리 파일
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+*.exe
+*.out
+*.app
+
+# 시스템 파일
+.DS_Store
+Thumbs.db
+
+# 기타
+*\354\235\264\354\212\271\354\244\200/
+*.log
