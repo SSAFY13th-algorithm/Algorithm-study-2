@@ -13,9 +13,6 @@
 ## ❗️ PR 규칙 및 Commit Message 규칙은 PR 템플릿 확인 ❗️
   <br>
   
-```
-To. Reviewers
-```
 ### Commit Message
 [Baekjoon-문제번호] 문제명
 
