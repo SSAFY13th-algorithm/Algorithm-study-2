@@ -6,26 +6,12 @@
     - 난이도는 Silver ~ Gold 5 문제 입니다.
 - PR에 다른 사람의 풀이를 보고 적극적인 커멘트를 남겨주세요
 
-## 🗓️ 파일구조는 다음예시처럼 해주세요 
-- ex) 알고리즘유형별 문제이름-문제번호
-<img width="252" alt="image" src="https://github.com/user-attachments/assets/71a5fc6c-ca41-4eda-ab13-f5c806c1570c">
-
 ## ❗️ 브랜치 규칙 ❗️
 - main에 푸쉬하는 것을 금지합니다 (전부 날라갈 위험이 있음!!)
 - 브랜치명은 다음과 같은 규칙을 지켜주세요!! ex) 이름/week-1, d11210920/week-1
 - 이슈는 따로 생성하지 않으셔도 됩니다!! 다만 , PR template을 작성하고 카테고리,제목,링크만 제대로 연결시키고 자신의 README에 추가해주세요
-## ❗️ PR 규칙 및 Commit Message 규칙 ❗️
-### [김동하-1주차 알고리즘 스터디] 
-#### Week 01 (25.01.20 ~ 25.01.27)
-| Category | Title | Link |
-| :------: | :---: | :--: |
-| 그래프 |  <a href="https://www.acmicpc.net/problem/17472">다리만들기 2</a> | <a href="">🔗</a> |
-| BFS  |  <a href="https://www.acmicpc.net/problem/22856">게리맨더링</a> | <a href="">🔗</a> |
-| 완탐 |  <a href="https://www.acmicpc.net/problem/17070">파이프 옮기기 1</a> | <a href="">🔗</a> |
-| 구현 |  <a href="https://www.acmicpc.net/problem/2578">빙고</a> | <a href="">🔗</a> |
-| DP |  <a href="https://www.acmicpc.net/problem/10844">쉬운 계단 수</a> | <a href="">🔗</a> |
-<br>
-
+## ❗️ PR 규칙 및 Commit Message 규칙은 PR 템플릿 확인 ❗️
+  <br>
 ```
 To. Reviewers
 ```
