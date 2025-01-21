@@ -30,6 +30,11 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 | DP |  <a href="https://www.acmicpc.net/problem/2806">DNA 발견</a> | <a href="">🔗</a> |
 <br>
 
+### Week 01 Additional (25.01.20 ~ 25.01.27)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| BFS |  <a href="https://www.acmicpc.net/problem/9328">열쇠</a> | <a href="">🔗</a> |
+<br>
 
 ## 😊코드 리뷰 규칙 
 ### 1. 코드 리뷰 순서
