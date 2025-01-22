@@ -21,16 +21,19 @@ public class Main17089 {
 			friend[people1][people2]++;
 			friend[people2][people1]++;
 			
-			// 총 친구의 수
+			// 총 친구의 수. 사용하지 않는 0에다가 친구수를 추가해준다. 
 			friend[people1][0]++;
 			friend[people2][0]++;
 		}
 		
+		
+		// for문을 돌면서 총 합이 최소인 값을 구한다.
 		int friend_num = Integer.MAX_VALUE;
 		for (int a = 1; a <= N - 2; a++) {
 			for (int b = a + 1; b <= N - 1; b++) {
-					// 셋이 친구인 경우에만 총 합 계산
+					// 먼저 a, b 가 친구인지를 확인
 					if (friend[a][b] > 0) {
+						// a, b가 친구인 경우에만 c를 끝까지 돌면서, c가 b, a와 둘 다 친구인 경우에만 합을 구한다.
 						for (int c = b + 1; c <= N; c++) {
 							if (friend[b][c] > 0 && friend[c][a] > 0)
 								friend_num = Math.min(friend_num, sum_friends(a, b, c, friend));
@@ -39,6 +42,7 @@ public class Main17089 {
 			}
 		}
 		
+		// 최소값이 초기 설정값이랑 같으면 짝이 없는 경우 임으로 -1 출력. 아니면 합을 출력
 		if (friend_num != Integer.MAX_VALUE) {
 			System.out.println(friend_num);
 		} else {
@@ -46,6 +50,7 @@ public class Main17089 {
 		}
 	}
 	
+	// 각 친구의 수를 합하는 함수
 	static int sum_friends(int a, int b, int c, int[][] friend) {
 		int sum = 0;
 		sum += friend[a][0] - 2;
