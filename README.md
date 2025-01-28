@@ -39,6 +39,24 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 | BFS |  <a href="https://www.acmicpc.net/problem/9328">열쇠</a> | <a href="">🔗</a> |
 <br>
 
+### Week 02 (25.01.27 ~ 25.02.03)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| DFS |  <a href="https://www.acmicpc.net/problem/16929">Two Dots</a> | <a href="">🔗</a> |
+| DP |  <a href="https://www.acmicpc.net/problem/11058">크리보드</a> | <a href="">🔗</a> |
+| BFS |  <a href="https://www.acmicpc.net/problem/16469">소년 점프</a> | <a href="">🔗</a> |
+| 시뮬레이션 |  <a href="https://www.acmicpc.net/problem/21610">마법사 상어와 비바라기</a> | <a href="">🔗</a> |
+| 재귀 |  <a href="https://www.acmicpc.net/problem/18222">투에-모스 문자열</a> | <a href="">🔗</a> |
+<br>
+
+### Week 02 Additional (25.01.27 ~ 25.02.03)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| 그리디 |  <a href="https://www.acmicpc.net/problem/18234">당근 훔쳐 먹기</a> | <a href="">🔗</a> |
+| 구현 |  <a href="https://www.acmicpc.net/problem/1030">프렉탈 평면</a> | <a href="">🔗</a> |
+<br>
+
+
 ## 😊코드 리뷰 규칙 
 ### 1. 코드 리뷰 순서
 
