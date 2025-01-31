@@ -22,7 +22,9 @@
  
 ## 주차 별 문제풀이 
 https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/22697
- 
+```
+권혁준 -> 유병규 -> 김유성 -> 한종욱 -> 권혁준
+```
 ### Week 01 (25.01.20 ~ 25.01.27)
 | Category | Title | Link |
 | :------: | :---: | :--: |
@@ -39,6 +41,9 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 | BFS |  <a href="https://www.acmicpc.net/problem/9328">열쇠</a> | <a href="">🔗</a> |
 <br>
 
+```
+권혁준 -> 한종욱 -> 김유성 -> 유병규 -> 권혁준
+```
 ### Week 02 (25.01.27 ~ 25.02.03)
 | Category | Title | Link |
 | :------: | :---: | :--: |
