@@ -42,18 +42,18 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 ### Week 02 (25.01.27 ~ 25.02.03)
 | Category | Title | Link |
 | :------: | :---: | :--: |
-| DFS |  <a href="https://www.acmicpc.net/problem/16929">Two Dots</a> | <a href="권혁준_2주차/[BOJ-16929] Two Dots.java">🔗</a> |
-| DP |  <a href="https://www.acmicpc.net/problem/11058">크리보드</a> | <a href="권혁준_2주차/[BOJ-11058] 크리보드.java">🔗</a> |
-| BFS |  <a href="https://www.acmicpc.net/problem/16469">소년 점프</a> | <a href="권혁준_2주차/[BOJ-16469] 소년 점프.java">🔗</a> |
-| 시뮬레이션 |  <a href="https://www.acmicpc.net/problem/21610">마법사 상어와 비바라기</a> | <a href="권혁준_2주차/[BOJ-21610] 마법사 상어와 비바라기.java">🔗</a> |
-| 재귀 |  <a href="https://www.acmicpc.net/problem/18222">투에-모스 문자열</a> | <a href="권혁준_2주차/[BOJ-18222] 투에-모스 문자열.java">🔗</a> |
+| DFS |  <a href="https://www.acmicpc.net/problem/16929">Two Dots</a> | <a href="권혁준_2주차/%5BBOJ-16929%5D Two Dots.java">🔗</a> |
+| DP |  <a href="https://www.acmicpc.net/problem/11058">크리보드</a> | <a href="권혁준_2주차/%5BBOJ-11058%5D 크리보드.java">🔗</a> |
+| BFS |  <a href="https://www.acmicpc.net/problem/16469">소년 점프</a> | <a href="권혁준_2주차/%5BBOJ-16469%5D 소년 점프.java">🔗</a> |
+| 시뮬레이션 |  <a href="https://www.acmicpc.net/problem/21610">마법사 상어와 비바라기</a> | <a href="권혁준_2주차/%5BBOJ-21610%5D 마법사 상어와 비바라기.java">🔗</a> |
+| 재귀 |  <a href="https://www.acmicpc.net/problem/18222">투에-모스 문자열</a> | <a href="권혁준_2주차/%5BBOJ-18222%5D 투에-모스 문자열.java">🔗</a> |
 <br>
 
 ### Week 02 Additional (25.01.27 ~ 25.02.03)
 | Category | Title | Link |
 | :------: | :---: | :--: |
-| 그리디 |  <a href="https://www.acmicpc.net/problem/18234">당근 훔쳐 먹기</a> | <a href="권혁준_2주차/[BOJ-18234] 당근 훔쳐 먹기.java">🔗</a> |
-| 구현 |  <a href="https://www.acmicpc.net/problem/1030">프렉탈 평면</a> | <a href="권혁준_2주차/[BOJ-1030] 프렉탈 평면.java">🔗</a> |
+| 그리디 |  <a href="https://www.acmicpc.net/problem/18234">당근 훔쳐 먹기</a> | <a href="권혁준_2주차/%5BBOJ-18234%5D 당근 훔쳐 먹기.java">🔗</a> |
+| 구현 |  <a href="https://www.acmicpc.net/problem/1030">프렉탈 평면</a> | <a href="권혁준_2주차/%5BBOJ-1030%5D 프렉탈 평면.java">🔗</a> |
 <br>
 
 
