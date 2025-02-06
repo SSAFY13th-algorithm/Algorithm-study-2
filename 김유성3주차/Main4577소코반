@@ -1,0 +1,116 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main4577소코반 {
+
+	static char[][] map;
+	static int R, C;
+	static int start_h, start_w;
+	static int[] dh = { -1, 1, 0, 0 };
+	static int[] dw = { 0, 0, -1, 1 };
+
+	static int box;
+	static int box_on_goal;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int game_num = 0;
+		while (true) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			R = Integer.parseInt(st.nextToken());
+			C = Integer.parseInt(st.nextToken());
+
+			if (R == 0 && C == 0) {
+				return;
+			}
+			game_num++;
+			map = new char[R][C];
+			box = 0;
+			box_on_goal = 0;
+			for (int i = 0; i < R; i++) {
+				String line = br.readLine();
+				for (int j = 0; j < C; j++) {
+					map[i][j] = line.charAt(j);
+					if (map[i][j] == 'w') { //유저의 위치는 입력받고 나서 .이나 +로 바꿔주고 static변수로 가지고 있는다.
+						start_h = i;
+						start_w = j;
+						map[i][j] = '.';
+					} else if (map[i][j] == 'W') {
+						start_h = i;
+						start_w = j;
+						map[i][j] = '+';						
+					}
+					else if (map[i][j] == 'b') { // box면 개수 추가
+						box++;
+					} else if (map[i][j] == 'B') { // 목표지점 박스면 box와 box_on_goal 둘 다 추가
+						box_on_goal++;
+						box++;
+					}
+				료
+				return;
+			
+			char c = input.charAt(i);
+      // 상, 하, 좌, 우를 dh, dw배열을 쓰고싶어서 다른 함수에 dir 인자로 전달달
+			if (c == 'U') {
+				moveMap(0);
+			} else if (c == 'D') {
+				moveMap(1);
+			} else if (c == 'L') {
+				moveMap(2);
+			} else { // c == 'R'
+				moveMap(3);
+			}
+		}
+	}
+
+	static void moveMap(int dir) {
+		int nh = start_h + dh[dir];
+		int nw = start_w + dw[dir];
+		if (nh >= 0 && nw >= 0 && nh < R && nw < C) {
+			if (map[nh][nw] == '#') {
+				return;
+			} else if (map[nh][nw] == '.' || map[nh][nw] == '+') { //바로 이동할 수 있는 지점
+				start_h = nh;
+				start_w = nw;
+			} else if (map[nh][nw] == 'b' || map[nh][nw] == 'B') { //박스가 있으면 박스를 밀 수 있는지 체크
+				if (moveBox(nh, nw, dir)) {
+					start_h = nh;
+					start_w = nw;
+				} 
+			}
+		}
+	}
+	
+	static boolean moveBox(int h, int w, int dir) {
+		int nh = h + dh[dir];
+		int nw = w + dw[dir];
+		if (nh >= 0 && nw >= 0 && nh < R && nw < C) {
+			if (map[nh][nw] == '#' || map[nh][nw] == 'b' || map[nh][nw] == 'B') { //박스를 밀어야 하는데 벽 또는 다른 박스인 경우
+				return false;
+			}
+			else if (map[nh][nw] == '.') {
+				if (map[h][w] == 'B') { // 목표지점의 박스를 빈 곳으로 밀었을 때
+					box_on_goal--;
+					map[h][w] = '+';
+				} else {
+					map[h][w] = '.';					
+				}
+				map[nh][nw] = 'b';
+				return true;
+			} else if (map[nh][nw] == '+') {
+				if (map[h][w] == 'B') { //목표지점의 박스를 또다른 목표지점으로 밀었을 때
+					map[h][w] = '+';
+				} else {
+					box_on_goal++;
+					map[h][w] = '.';					
+				}
+				map[nh][nw] = 'B';
+				return true;
+			}
+		}
+		return false;
+	}
+
+}
