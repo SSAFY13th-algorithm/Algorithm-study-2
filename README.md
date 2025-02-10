@@ -69,7 +69,7 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 <br>
 
 ```
-미정
+유병규 → 권혁준 → 허민권 → 김유성 → 홍윤기 → 한종욱 → 유병규
 ```
 ### Week 03 (25.02.03 ~ 25.02.10)
 | Category | Title | Link |
@@ -86,6 +86,26 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 | :------: | :---: | :--: |
 | 완탐 |  <a href="https://www.acmicpc.net/problem/7573">고기잡이</a> | <a href="">🔗</a> |
 | 이분탐색 |  <a href="https://www.acmicpc.net/problem/2539">모자이크</a> | <a href="">🔗</a> |
+<br>
+
+```
+유병규 → 김유성 → 한종욱 → 권혁준 → 홍윤기 → 허민권 → 유병규
+```
+### Week 04 (25.02.10 ~ 25.02.17)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| DP |  <a href="https://www.acmicpc.net/problem/9252">LCS 2</a> | <a href="">🔗</a> |
+| 그리디 |  <a href="https://www.acmicpc.net/problem/9440">숫자 더하기</a> | <a href="">🔗</a> |
+| 완탐 |  <a href="https://www.acmicpc.net/problem/30804">과일 탕후루</a> | <a href="">🔗</a> |
+| 이분탐색 |  <a href="https://www.acmicpc.net/problem/16498">작은 벌점</a> | <a href="">🔗</a> |
+| 트리 |  <a href="https://www.acmicpc.net/problem/13325">이진 트리</a> | <a href="">🔗</a> |
+<br>
+
+### Week 04 Additional (25.02.10 ~ 25.02.17)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| DFS |  <a href="https://www.acmicpc.net/problem/14238">출근 기록</a> | <a href="">🔗</a> |
+| BFS |  <a href="https://www.acmicpc.net/problem/22944">죽음의 비</a> | <a href="">🔗</a> |
 <br>
 
 
