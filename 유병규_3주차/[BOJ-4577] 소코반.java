@@ -1,152 +1,179 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-    private static final String DONE = "complete";
-    private static final String NONDONE = "incomplete";
+	private static char[][] map;
+	private static int[] user;
+	private static int[][] d = { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } };
+	private static int r = 0, c = 0, goal = 0, success = 0;
 
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        int index = 1;
-        while(true) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int r = Integer.parseInt(st.nextToken());
-            int c = Integer.parseInt(st.nextToken());
+		int game = 1;
+		StringBuilder sb = new StringBuilder();
+		while (true) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			r = Integer.parseInt(st.nextToken());
+			c = Integer.parseInt(st.nextToken());
 
-            if(r == 0 && c==0) break;
+			if (r == 0 && c == 0)
+				break;
 
-            char[][] map = new char[r][c];
-            int[] userPoint = new int[2];
-            int total = 0;
-            int successBox = 0;
+			map = new char[r][c];
+			goal = 0;
+			success = 0;
+			for (int i = 0; i < r; i++) {
+				String inputs = br.readLine();
+				int index = 0;
+				for (char ch : inputs.toCharArray()) {
+					map[i][index] = ch;
+					if (ch == 'w')
+						user = new int[] { i, index };
+					else if (ch == 'W') {
+						user = new int[] { i, index };
+						goal++;
+					} else if (ch == '+')
+						goal++;
+					else if (ch == 'B') {
+						goal++;
+						success++;
+					}
+					index++;
+				}
+			}
 
-            for(int i=0; i<r; i++) {
-                String line = br.readLine();
-                for(int j=0; j<c; j++) {
-                    map[i][j] = line.charAt(j);
-                    if(map[i][j] == '+') total++;
-                    else if(map[i][j] == 'B') {
-                        total++;
-                        successBox++;
-                    }
-                    else if(map[i][j] == 'W') {
-                        total++;
-                        userPoint[0] = i;
-                        userPoint[1] = j;
-                    }
-                    else if(map[i][j] == 'w') {
-                        userPoint[0] = i;
-                        userPoint[1] = j;
-                    }
-                }
-            }
+			String operators = br.readLine();
+			String result = "incomplete";
+			// 이동 완료
+			for (char operator : operators.toCharArray()) {
+				if (goal == success) {
+					result = "complete";
+					break;
+				}
+				int[] move = getPoint(operator);
 
-            String inputKeys = br.readLine();
+				int nx = user[0] + move[0];
+				int ny = user[1] + move[1];
+				if (nx < 0 || nx >= r || ny < 0 || ny >= c)
+					continue;
+				if (map[nx][ny] == '#')
+					continue;
 
-            boolean isSuccess = false;
-            for(char key : inputKeys.toCharArray()) {
-                if(successBox == total) {
-                    isSuccess = true;
-                    break;
-                }
+				move(nx, ny, move);
+			}
+			if (goal == success) {
+				result = "complete";
+			}
+			//
+			sb.append("Game " + game + ": " + result + "\n");
+			for (int i = 0; i < r; i++) {
+				for (int j = 0; j < c; j++) {
+					sb.append(map[i][j] + "");
+				}
+				sb.append("\n");
+			}
+			game++;
+		}
 
-                successBox = move(r, c, map, userPoint, successBox, key);
-            }
-            if(successBox == total) {
-                isSuccess = true;
-            }
+		System.out.print(sb.toString().trim());
+	}
 
-            sb.append("Game "+index + ": ");
+	private static void move(int x, int y, int[] move) {
+		if (map[x][y] == '.') {
+			if (map[user[0]][user[1]] == 'w')
+				map[user[0]][user[1]] = '.';
+			else
+				map[user[0]][user[1]] = '+';
 
-            if(isSuccess) sb.append(DONE);
-            else sb.append(NONDONE);
+			map[x][y] = 'w';
+			user[0] = x;
+			user[1] = y;
+			return;
+		}
+		if (map[x][y] == '+') {
+			if (map[user[0]][user[1]] == 'w')
+				map[user[0]][user[1]] = '.';
+			else
+				map[user[0]][user[1]] = '+';
 
-            sb.append("\n");
-            for(int i=0; i<r; i++) {
-                for(int j=0; j<c; j++) {
-                    sb.append(map[i][j]+"");
-                }
-                sb.append("\n");
-            }
-            index++;
+			map[x][y] = 'W';
+			user[0] = x;
+			user[1] = y;
+			return;
+		}
+		int boxNx = x + move[0];
+		int boxNy = y + move[1];
+		if (boxNx < 0 || boxNx >= r || boxNy < 0 || boxNy >= c)
+			return;
+		if (map[boxNx][boxNy] == '#' || map[boxNx][boxNy] == 'b' || map[boxNx][boxNy] == 'B')
+			return;
 
-        }
-        System.out.println(sb.toString().trim());
-    }
+		if (map[boxNx][boxNy] == '.') {
+			if (map[x][y] == 'b') {// b -> .
+				if (map[user[0]][user[1]] == 'w')
+					map[user[0]][user[1]] = '.';
+				else
+					map[user[0]][user[1]] = '+';
+				map[x][y] = 'w';
+				map[boxNx][boxNy] = 'b';
+			} else {// B -> .
+				if (map[user[0]][user[1]] == 'w')
+					map[user[0]][user[1]] = '.';
+				else
+					map[user[0]][user[1]] = '+';
+				map[x][y] = 'W';
+				map[boxNx][boxNy] = 'b';
+				success--;
+			}
+			user[0] = x;
+			user[1] = y;
+			return;
+		}
+		if (map[boxNx][boxNy] == '+') {
+			if (map[x][y] == 'b') {// b -> +
+				if (map[user[0]][user[1]] == 'w')
+					map[user[0]][user[1]] = '.';
+				else
+					map[user[0]][user[1]] = '+';
+				map[x][y] = 'w';
+				map[boxNx][boxNy] = 'B';
+				success++;
+			} else {// B -> +
+				if (map[user[0]][user[1]] == 'w')
+					map[user[0]][user[1]] = '.';
+				else
+					map[user[0]][user[1]] = '+';
+				map[x][y] = 'W';
+				map[boxNx][boxNy] = 'B';
+			}
+			user[0] = x;
+			user[1] = y;
+			return;
+		}
+	}
 
-    private static int move(int r, int c, char[][] map, int[] userPoint, int successBox, char key) {
-        int[] d = parseKey(key);
-        int nx = userPoint[0] + d[0];
-        int ny = userPoint[1] + d[1];
+	private static int[] getPoint(char operator) {
+		int index = 0;
+		switch (operator) {
+		case 'U':
+			index = 0;
+			break;
+		case 'R':
+			index = 1;
+			break;
+		case 'D':
+			index = 2;
+			break;
+		case 'L':
+			index = 3;
+			break;
+		default:
+			index = 0;
+			break;
+		}
+		;
+		return d[index];
+	}
 
-        if(nx<0 || nx>=r || ny<0 || ny>=c || map[nx][ny] == '#')
-            return successBox;
-
-        if(map[nx][ny] == '.') {
-            map[nx][ny] = 'w';
-
-            moveUser(map, userPoint, nx, ny);
-            return successBox;
-        }
-
-        if(map[nx][ny] == '+') {
-            map[nx][ny] = 'W';
-
-            moveUser(map, userPoint, nx, ny);
-            return successBox;
-        }
-
-        // 1(userPoint) 2(nx, ny) 3(boxNx, boxNy)
-        int boxNx = nx + d[0];
-        int boxNy = ny + d[1];
-        if(boxNx<0 || boxNx>=r || boxNy<0 || boxNy>=c || map[boxNx][boxNy] == '#' || map[boxNx][boxNy] == 'b')
-            return successBox;
-
-        if(map[boxNx][boxNy] == '.') {
-            //3
-            map[boxNx][boxNy] = 'b';
-            //2
-            if(map[nx][ny] == 'B') {
-                map[nx][ny] = 'W';
-                successBox--;
-            }
-            else map[nx][ny] = 'w';
-            moveUser(map, userPoint, nx, ny);
-            return successBox;
-        }
-
-        if(map[boxNx][boxNy] == '+') {
-            //3
-            map[boxNx][boxNy] = 'B';
-            successBox++;
-            //2
-            if(map[nx][ny] == 'B') map[nx][ny] = 'W';
-            else map[nx][ny] = 'w';
-            //1
-            moveUser(map, userPoint, nx, ny);
-            return successBox;
-        }
-        return successBox;
-    }
-
-    private static void moveUser(char[][] map, int[] userPoint, int nx, int ny) {
-        if(map[userPoint[0]][userPoint[1]] == 'W') {
-            map[userPoint[0]][userPoint[1]] = '+';
-        }
-        else map[userPoint[0]][userPoint[1]] = '.';
-
-        userPoint[0] = nx;
-        userPoint[1] = ny;
-    }
-
-    private static int[] parseKey(char key) {
-        if(key == 'U') return new int[] {-1, 0};
-        if(key == 'D') return new int[] {1, 0};
-        if(key == 'L') return new int[] {0, -1};
-        return new int[] {0, 1};
-    }
 }
