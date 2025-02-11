@@ -1,0 +1,53 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.StringTokenizer;
+
+public class Main23843콘센트 {
+	static int N, M;
+	static List<Integer> time = new ArrayList<>();
+	static int[] concent;
+	static long ret = 0;
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		
+		st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < N; i++) {
+			time.add(Integer.parseInt(st.nextToken()));
+		}
+		concent = new int[M];
+		
+		Collections.sort(time); // 오름차순으로 정렬
+		// 최소시간은 제일 오래 걸리는 것부터 각자의 충전기에 할당.
+		while (time.size() > 0) {
+			for (int i = 0; i < M; i++) {
+				if (time.size() > 0 && concent[i] == 0) {
+					concent[i] = time.get(time.size() - 1);
+					time.remove(time.size() - 1);
+				}
+			}
+			Arrays.sort(concent);
+			int min_time = concent[0];
+			for (int i = 0; i < M; i++) {
+				if (concent[i] != 0)
+					concent[i] -= min_time;
+			}
+			ret += min_time;
+		}
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < M; i++) {
+			max = Math.max(max, concent[i]);
+		}
+		ret += max;
+		System.out.println(ret);
+	}
+}
