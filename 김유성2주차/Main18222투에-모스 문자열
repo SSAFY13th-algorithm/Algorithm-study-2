@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	static int arr[] = {-1, 0, 1, 1, 0, 1, 0, 0, 1}; //8개 정도까지만 저장
+	
+	public static void Main18222투에-모스 문자열(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		long k = sc.nextLong();
+		int ret = zeroone(k);
+		System.out.println(ret);
+		sc.close();
+	}
+
+	
+	/*
+	 * 2의 배수로 숫자가 늘어난다.
+	 * 늘어 날 때, 기존을 절반으로 나눈다. 절반의 뒷부분이 앞에 붙고, 절반의 앞부분이 뒤에 붙는다.
+	 * 위 과정을 반복해서 문자열이 늘어난다.
+	 * 그렇다면 2의 배수로 우선 계속 늘린다 -> k보다 클 때까지 반복문을 돌린다.
+	 * 그때의 문자열을 기준으로 k의 위치를 계산한다. 
+	 */
+	static int zeroone(long k) {
+		if (k <= 8)
+			return arr[(int)k];
+		
+		long len = 8;
+		while (len < k) {
+			len *= 2;
+		}
+		
+		while (len > 8) {
+			if (k <= len / 2) { // k위치를 재조정 한 값이 앞쪽이면 뒤에는 버리고 앞부터 생각.
+				len /= 2;
+				continue;
+			}
+			long k_to_0 = k - len / 2; // k위치를 len을 절반으로 나눈 것의 뒤쪽의 1부터 시작하도록 재조정
+			len /= 2; // len을 절반으로 줄인다.
+			
+			if (k_to_0 > len / 2) { // len의 절반보다 뒤쪽에 있으면 k는 앞에서 시작
+				k = k_to_0 - len / 2;
+			} else { // len의 절반보다 앞쪽에 있으면 k는 앞의 중간에서 시작
+				k = k_to_0 + len / 2;
+			}
+		}
+		
+		return arr[(int)k];
+	}
+}
