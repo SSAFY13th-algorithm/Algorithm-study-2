@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main4577소코반 {
+public class MainMain4577소코반 {
 
 	static char[][] map;
 	static int R, C;
@@ -33,7 +33,7 @@ public class Main4577소코반 {
 				String line = br.readLine();
 				for (int j = 0; j < C; j++) {
 					map[i][j] = line.charAt(j);
-					if (map[i][j] == 'w') { //유저의 위치는 입력받고 나서 .이나 +로 바꿔주고 static변수로 가지고 있는다.
+					if (map[i][j] == 'w') {
 						start_h = i;
 						start_w = j;
 						map[i][j] = '.';
@@ -42,17 +42,46 @@ public class Main4577소코반 {
 						start_w = j;
 						map[i][j] = '+';						
 					}
-					else if (map[i][j] == 'b') { // box면 개수 추가
+					else if (map[i][j] == 'b') {
 						box++;
-					} else if (map[i][j] == 'B') { // 목표지점 박스면 box와 box_on_goal 둘 다 추가
+					} else if (map[i][j] == 'B') {
 						box_on_goal++;
 						box++;
 					}
-				료
+				}
+			}
+			startGame(br.readLine());
+			String complete = box == box_on_goal ? "complete" : "incomplete";
+			System.out.printf("Game %d: %s\n", game_num, complete);
+			printMap();
+		}
+	}
+
+	static void printMap() {
+		for (int i = 0; i < R; i++) {
+			for (int j = 0; j < C; j++) {
+				if (i == start_h && j == start_w) {
+					if (map[i][j] == '+')
+						System.out.print('W');
+					else
+						System.out.print('w');
+				} else {
+					System.out.print(map[i][j]);					
+				}
+			}
+			System.out.println();
+		}
+	}
+
+	// U = 0, D = 1, L = 2, R = 3
+	static void startGame(String input) {
+		int h = start_h;
+		int w = start_w;
+		for (int i = 0; i < input.length(); i++) {
+			if (box == box_on_goal)
 				return;
 			
 			char c = input.charAt(i);
-      // 상, 하, 좌, 우를 dh, dw배열을 쓰고싶어서 다른 함수에 dir 인자로 전달달
 			if (c == 'U') {
 				moveMap(0);
 			} else if (c == 'D') {
@@ -71,10 +100,10 @@ public class Main4577소코반 {
 		if (nh >= 0 && nw >= 0 && nh < R && nw < C) {
 			if (map[nh][nw] == '#') {
 				return;
-			} else if (map[nh][nw] == '.' || map[nh][nw] == '+') { //바로 이동할 수 있는 지점
+			} else if (map[nh][nw] == '.' || map[nh][nw] == '+') {
 				start_h = nh;
 				start_w = nw;
-			} else if (map[nh][nw] == 'b' || map[nh][nw] == 'B') { //박스가 있으면 박스를 밀 수 있는지 체크
+			} else if (map[nh][nw] == 'b' || map[nh][nw] == 'B') {
 				if (moveBox(nh, nw, dir)) {
 					start_h = nh;
 					start_w = nw;
