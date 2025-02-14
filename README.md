@@ -35,17 +35,17 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 ### Week 01 (25.01.20 ~ 25.01.27)
 | Category | Title | Link |
 | :------: | :---: | :--: |
-| 구현 |  <a href="https://www.acmicpc.net/problem/17225">세훈이의 선물가게</a> | <a href="">🔗</a> |
-| 완탐 |  <a href="https://www.acmicpc.net/problem/17089">세 친구</a> | <a href="">🔗</a> |
-| DP |  <a href="https://www.acmicpc.net/problem/17074">정렬</a> | <a href="">🔗</a> |
-| BFS |  <a href="https://www.acmicpc.net/problem/14716">현수막</a> | <a href="">🔗</a> |
-| DP |  <a href="https://www.acmicpc.net/problem/2806">DNA 발견</a> | <a href="">🔗</a> |
+| 구현 |  <a href="https://www.acmicpc.net/problem/17225">세훈이의 선물가게</a> | <a href="권혁준_1주차/BOJ17225.java">🔗</a> |
+| 완탐 |  <a href="https://www.acmicpc.net/problem/17089">세 친구</a> | <a href="권혁준_1주차/BOJ17089.java">🔗</a> |
+| DP |  <a href="https://www.acmicpc.net/problem/17074">정렬</a> | <a href="권혁준_1주차/BOJ17074.java">🔗</a> |
+| BFS |  <a href="https://www.acmicpc.net/problem/14716">현수막</a> | <a href="권혁준_1주차/BOJ14716.java">🔗</a> |
+| DP |  <a href="https://www.acmicpc.net/problem/2806">DNA 발견</a> | <a href="권혁준_1주차/BOJ2806.java">🔗</a> |
 <br>
 
 ### Week 01 Additional (25.01.20 ~ 25.01.27)
 | Category | Title | Link |
 | :------: | :---: | :--: |
-| BFS |  <a href="https://www.acmicpc.net/problem/9328">열쇠</a> | <a href="">🔗</a> |
+| BFS |  <a href="https://www.acmicpc.net/problem/9328">열쇠</a> | <a href="권혁준_1주차/BOJ9328.java">🔗</a> |
 <br>
 
 ```
