@@ -95,8 +95,8 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 | Category | Title | Link |
 | :------: | :---: | :--: |
 | DP |  <a href="https://www.acmicpc.net/problem/9252">LCS 2</a> | <a href="">🔗</a> |
-| 그리디 |  <a href="https://www.acmicpc.net/problem/9440">숫자 더하기</a> | <a href="">🔗</a> |
-| 완탐 |  <a href="https://www.acmicpc.net/problem/30804">과일 탕후루</a> | <a href="">🔗</a> |
+| 그리디 |  <a href="https://www.acmicpc.net/problem/20207">달력</a> | <a href="">🔗</a> |
+| 완탐 |  <a href="https://www.acmicpc.net/problem/12101">1, 2, 3 더하기 2</a> | <a href="">🔗</a> |
 | 이분탐색 |  <a href="https://www.acmicpc.net/problem/16498">작은 벌점</a> | <a href="">🔗</a> |
 | 트리 |  <a href="https://www.acmicpc.net/problem/13325">이진 트리</a> | <a href="">🔗</a> |
 <br>
@@ -106,6 +106,28 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 | :------: | :---: | :--: |
 | DFS |  <a href="https://www.acmicpc.net/problem/14238">출근 기록</a> | <a href="">🔗</a> |
 | BFS |  <a href="https://www.acmicpc.net/problem/22944">죽음의 비</a> | <a href="">🔗</a> |
+<br>
+
+
+```
+한종욱 → 유병규 → 허민권 → 권혁준 → 홍윤기 → 김유성 → 한종욱
+```
+### Week 05 (25.02.17 ~ 25.02.24)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| 완탐 |  <a href="https://www.acmicpc.net/problem/12101">1, 2, 3 더하기 2</a> | <a href="">🔗</a> |
+| 그리디 |  <a href="https://www.acmicpc.net/problem/20207">달력</a> | <a href="">🔗</a> |
+| 이분탐색 |  <a href="https://www.acmicpc.net/problem/16401">과자 나눠주기</a> | <a href="">🔗</a> |
+| DP |  <a href="https://www.acmicpc.net/problem/2228">구간 나누기</a> | <a href="">🔗</a> |
+| 시뮬레이션 |  <a href="https://www.acmicpc.net/problem/17144">미세먼지 안녕!</a> | <a href="">🔗</a> |
+<br>
+
+### Week 05 Additional (25.02.17 ~ 25.02.24)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| DFS |  <a href="https://www.acmicpc.net/problem/16964">DFS 스페셜 저지</a> | <a href="">🔗</a> |
+| 트리 |  <a href="https://www.acmicpc.net/problem/2250">트리의 높이와 너비</a> | <a href="">🔗</a> |
+| BFS |  <a href="https://www.acmicpc.net/problem/16973">직사각형 탈출</a> | <a href="">🔗</a> |
 <br>
 
 
