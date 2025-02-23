@@ -1,0 +1,70 @@
+package algostudy;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+public class Main16964DFS스페셜 {
+	
+	static int N;
+	static boolean isNotOk;
+	static Map<Integer, List<Integer>> num = new HashMap<>();
+	static StringTokenizer st;
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+	public static void main(String[] args) throws IOException {
+		input();
+		int index = Integer.parseInt(st.nextToken());
+		if (index != 1)
+			isNotOk = true;
+		dfsCheck(1);
+		if (st.hasMoreTokens() || isNotOk) // 토큰이 남아 있거나(방문을 다 하지 않고 조건이 안맞아서 종료된 경우), isNotOk가 true일 때.
+			System.out.println(0);
+		else
+			System.out.println(1);
+	}
+	
+	static void input() throws IOException {
+		int a, b;
+		N = Integer.parseInt(br.readLine());
+		for (int i = 0; i < N - 1; i++) {
+			st = new StringTokenizer(br.readLine());
+			a = Integer.parseInt(st.nextToken());
+			b = Integer.parseInt(st.nextToken());
+			List<Integer> list1 = num.get(a);
+			List<Integer> list2 = num.get(b);
+			if (list1 == null)
+				list1 = new LinkedList<Integer>();
+			if (list2 == null)
+				list2 = new LinkedList<Integer>();
+			list1.add(b);
+			num.put(a, list1);
+			num.put(b, list2);
+		}
+		st = new StringTokenizer(br.readLine());
+	}
+	
+	static void dfsCheck(int index) {
+		List<Integer> list = num.remove(index);
+		if (list == null || isNotOk)
+			return;
+		
+		while (!list.isEmpty() && !isNotOk) {
+			int n = Integer.parseInt(st.nextToken());
+			int i = list.indexOf(n);
+			if (i == -1) {
+				isNotOk = true;
+				return;
+			} else {
+				num.get(n).remove((Integer)index); // 서로 연결되어 있는 값을 지워버린다. 따로 visited처리하지 않아도 가능.
+				list.remove(i);
+				dfsCheck(n);
+			}
+		}
+	}
+}
