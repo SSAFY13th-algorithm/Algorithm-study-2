@@ -153,6 +153,29 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 <br>
 
 
+```
+홍윤기 → 허민권 → 권혁준 → 김유성 → 유병규 → 한종욱 → 홍윤기
+```
+### Week 07 (25.03.03 ~ 25.03.10)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| BFS |  <a href="https://www.acmicpc.net/problem/16947">서울 지하철 2호선</a> | <a href="">🔗</a> |
+| DP |  <a href="https://www.acmicpc.net/problem/12026">BOJ 거리</a> | <a href="">🔗</a> |
+| 분할 정복 |  <a href="https://www.acmicpc.net/problem/16974">레벨 햄버거</a> | <a href="">🔗</a> |
+| 매개 변수 탐색 |  <a href="https://www.acmicpc.net/problem/16564">히오스 프로게이머</a> | <a href="">🔗</a> |
+| 시뮬레이션 |  <a href="https://www.acmicpc.net/problem/16918">봄버맨</a> | <a href="">🔗</a> |
+<br>
+
+### Week 07 Additional (25.03.03 ~ 25.03.10)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| 그리디 |  <a href="https://www.acmicpc.net/problem/2437">저울</a> | <a href="">🔗</a> |
+| BFS |  <a href="https://www.acmicpc.net/problem/10711">모래성</a> | <a href="">🔗</a> |
+| DFS |  <a href="https://www.acmicpc.net/problem/17265">나의 인생에는 수학과 함께</a> | <a href="">🔗</a> |
+<br>
+
+
+
 ## 😊코드 리뷰 규칙 
 ### 1. 코드 리뷰 순서
 
