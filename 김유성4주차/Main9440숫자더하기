@@ -1,0 +1,77 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class Main9440숫자더하기 {
+
+	static int[] number;
+	static Queue<Integer> q;
+	static int num1;
+	static int num2;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		while (true) {
+			String input = br.readLine();
+			if (input.equals("0"))
+				return;
+			StringTokenizer st = new StringTokenizer(input);
+			int N = Integer.parseInt(st.nextToken());
+			
+			// 초기화 작업
+			num1 = 0;
+			num2 = 0;
+			number = new int[10];
+
+      //number에다가 0~9까지 몇개씩인지 저장
+			for (int i = 1; i <= N; i++) {
+				int input_number = Integer.parseInt(st.nextToken());
+				number[input_number]++;
+			}
+			inToQueue(N);
+			makeNum(N);
+			System.out.println(num1 + num2);
+		}
+
+	}
+
+  //num1, num2를 만들기 위한 queue생성 작업
+	static void inToQueue(int n) {
+		q = new LinkedList<>();
+		int i = 1;
+		while (q.size() < 2) { // 맨 앞자리 수 2개 저장, 0이면 안되기 때문에 1부터 탐색해서 제일 낮은 수부터 2개 저장
+			if (number[i] != 0) {
+				q.add(i);
+				number[i]--;
+			} else {
+				i++;				
+			}
+		}
+		
+		i = 0;
+		while (q.size() < n) { // 0부터 시작해서 제일 낮은 순서대로 저장
+			if (number[i] != 0) {
+				q.add(i);
+				number[i]--;
+			} else {
+				i++;				
+			}
+		}
+	}
+	
+	// queue에서 하나씩 빼면서 num1, num2를 만들어준다.
+	static void makeNum(int n) {			
+		for (int i = 1; i <= n; i++) {
+			if (i % 2 == 0) {
+				num1 = num1 * 10 + q.poll();
+			} else {
+				num2 = num2 * 10 + q.poll();
+			}
+		}
+	}
+}
+
