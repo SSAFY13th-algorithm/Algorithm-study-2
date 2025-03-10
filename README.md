@@ -24,9 +24,19 @@
 https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/22697
 
 - 문제는 아래의 solved.ac 쿼리로 랜덤 추출합니다.
+- 25.01.20 ~ 25.02.17
 ```
 !@khj20006 !@ybg6539 !@aruru18 !@usk0513 !@yoonki1207 !@corntea o?true lang:ko s#300.. *s2..g3 #(tag)
 ```
+- 25.02.17 ~ 25.03.10
+```
+!@ybg6539 !@usk0513 !@yoonki1207 !@corntea !@aruru18 o?true lang:ko s#1000.. *s2..g3 #(tag_name)
+```
+- 25.03.10 ~
+```
+!@ybg6539 !@usk0513 !@yoonki1207 !@corntea !@aruru18 o?true lang:ko s#1000.. *g5..g3 #(tag_name)
+```
+
 ---
 
 ```
@@ -174,6 +184,27 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 | DFS |  <a href="https://www.acmicpc.net/problem/17265">나의 인생에는 수학과 함께</a> | <a href="">🔗</a> |
 <br>
 
+
+```
+김유성 -> 허민권 -> 한종욱 -> 권혁준 -> 홍윤기 -> 유병규 -> 김유성
+```
+### Week 08 (25.03.10 ~ 25.03.17)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| DP |  <a href="https://www.acmicpc.net/problem/20166">문자열 지옥에 빠진 호석</a> | <a href="">🔗</a> |
+| 시뮬레이션 |  <a href="https://www.acmicpc.net/problem/10836">여왕벌</a> | <a href="">🔗</a> |
+| DFS |  <a href="https://www.acmicpc.net/problem/4803">트리</a> | <a href="">🔗</a> |
+| 다익스트라 |  <a href="https://www.acmicpc.net/problem/2151">거울 설치</a> | <a href="">🔗</a> |
+| BFS |  <a href="https://www.acmicpc.net/problem/18405">경쟁적 전염</a> | <a href="">🔗</a> |
+<br>
+
+### Week 08 Additional (25.03.10 ~ 25.03.17)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| 그리디 |  <a href="https://www.acmicpc.net/problem/12931">두 배 더하기</a> | <a href="">🔗</a> |
+| 슬라이딩 윈도우 |  <a href="https://www.acmicpc.net/problem/15961">회전 초밥</a> | <a href="">🔗</a> |
+| 분리 집합 |  <a href="https://www.acmicpc.net/problem/7511">소셜 네트워킹 어플리케이션</a> | <a href="">🔗</a> |
+<br>
 
 
 ## 😊코드 리뷰 규칙 
