@@ -1,107 +1,92 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
 
-public class boj10836 {
-    // 입출력을 위한 버퍼 선언
+/**
+ * 햄버거 먹는 문제 - 재귀적 구조의 햄버거에서 특정 위치까지 먹었을 때 패티의 개수를 계산
+ */
+public class boj16974 {
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    private static final StringBuilder sb = new StringBuilder();
 
-    // 벌집의 크기와 성장 정보를 저장할 배열
-    private static int[][] map;        // 벌집의 크기를 저장할 2차원 배열
-    private static int[][] grow;       // 일별 성장 정보를 저장할 2차원 배열
-    private static int n, m;           // n: 날짜 수, m: 벌집의 크기
+    private static long[] burger;   // 각 레벨별 햄버거의 총 길이를 저장하는 배열
+    private static long[] patties;  // 각 레벨별 햄버거에 포함된 패티의 총 개수를 저장하는 배열
+    private static int n;           // 햄버거의 레벨
+    private static long x;          // 먹을 햄버거의 길이
 
     public static void main(String[] args) throws IOException {
-        // 초기화
+        // 입력을 받고 초기화
         init();
 
-        // 모든 날짜에 대해 성장 처리
-        for (int day = 0; day < n; day++) {
-            firstGrow(day); // 테두리(첫 번째 열과 첫 번째 행)만 성장 처리
-        }
-        otherGrow(); // 나머지 내부 벌집 성장 처리 (모든 날짜가 끝난 후 한 번만)
-
-        // 결과 출력을 위한 문자열 구성
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < m; j++) {
-                sb.append(map[i][j]).append(" ");
-            }
-            sb.setLength(sb.length() - 1); // 마지막 공백 제거
-            sb.append("\n");
-        }
-
-        // 결과 출력
-        bw.write(sb.toString());
+        // 패티 개수 계산 및 출력
+        bw.write(countPatties(n, x) + "\n");
         bw.flush();
         bw.close();
         br.close();
     }
 
     /**
-     * 입력값을 받아 초기 설정을 하는 함수
+     * 입력을 받고 햄버거와 패티 배열을 초기화하는 메소드
      */
     private static void init() throws IOException {
-        // m(벌집 크기)과 n(날짜 수) 입력 받기
+        // 입력 받기
         StringTokenizer st = new StringTokenizer(br.readLine());
-        m = Integer.parseInt(st.nextToken());
-        n = Integer.parseInt(st.nextToken());
+        n = Integer.parseInt(st.nextToken());  // 햄버거 레벨
+        x = Long.parseLong(st.nextToken());    // 먹을 햄버거 길이
 
-        // 벌집과 성장 정보 배열 초기화
-        map = new int[m][m];   // m x m 크기의 벌집
-        grow = new int[n][3];  // n일 동안의 성장 정보 (0, 1, 2 성장에 대한 개수)
+        // 배열 초기화
+        burger = new long[n + 1];   // 각 레벨별 햄버거 길이
+        patties = new long[n + 1];  // 각 레벨별 패티 개수
 
-        // 모든 벌집을 1로 초기화 (초기 크기)
-        for (int i = 0; i < m; i++) {
-            Arrays.fill(map[i], 1);
-        }
+        // 레벨 0 햄버거는 패티 하나 (P)
+        burger[0] = 1;  // 패티 하나의 길이
+        patties[0] = 1; // 패티 개수
 
-        // 일별 성장 정보 입력 받기
-        for (int i = 0; i < n; i++) {
-            st = new StringTokenizer(br.readLine());
-            grow[i][0] = Integer.parseInt(st.nextToken()); // 0만큼 자라는 개수
-            grow[i][1] = Integer.parseInt(st.nextToken()); // 1만큼 자라는 개수
-            grow[i][2] = Integer.parseInt(st.nextToken()); // 2만큼 자라는 개수
-        }
-    }
-
-    /**
-     * 테두리(첫 번째 열과 첫 번째 행)의 성장을 처리하는 함수
-     * @param day 현재 처리할 날짜
-     */
-    private static void firstGrow(int day) {
-        int index = 0; // 현재 적용할 성장 값(0, 1, 2)
-
-        // 첫 번째 열 처리 (아래에서 위로, 맨 아래 제외)
-        for (int i = m - 1; i > 0; i--) {
-            // 현재 인덱스의 성장값이 모두 사용되었으면 다음 인덱스로 이동
-            while (grow[day][index] == 0) index++;
-            map[i][0] += index; // 현재 벌집에 성장값 적용
-            grow[day][index]--; // 사용한 성장값 개수 감소
-        }
-
-        // 첫 번째 행 처리 (왼쪽에서 오른쪽으로)
-        for (int i = 0; i < m; i++) {
-            // 현재 인덱스의 성장값이 모두 사용되었으면 다음 인덱스로 이동
-            while (grow[day][index] == 0) index++;
-            map[0][i] += index; // 현재 벌집에 성장값 적용
-            grow[day][index]--; // 사용한 성장값 개수 감소
+        // 각 레벨별 햄버거 길이와 패티 수 계산
+        // 레벨 L 햄버거 = B + 레벨 L-1 햄버거 + P + 레벨 L-1 햄버거 + B
+        // B는 빵(길이 1), P는 패티(길이 1)
+        for (int i = 1; i <= n; i++) {
+            burger[i] = 2 * burger[i - 1] + 3;  // 총 길이: 이전 레벨 햄버거 2개 + 빵 2개 + 패티 1개
+            patties[i] = 2 * patties[i - 1] + 1; // 패티 수: 이전 레벨 패티 수 2배 + 중간 패티 1개
         }
     }
 
     /**
-     * 내부 벌집의 성장을 처리하는 함수
-     * 내부 벌집은 왼쪽, 왼쪽 위, 위쪽 중 최댓값을 따라 자라지만,
-     * 문제의 성장 패턴에 따라 항상 같은 열의 첫 번째 행 값이 최댓값이 됨
+     * 레벨 level의 햄버거에서 x만큼 먹었을 때 먹은 패티의 개수를 계산하는 메소드
+     *
+     * @param level 햄버거의 레벨
+     * @param x 먹은 햄버거의 길이
+     * @return 먹은 패티의 개수
      */
-    private static void otherGrow() {
-        // 내부 모든 벌집 처리 (첫 번째 행과 열을 제외한 나머지)
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < m; j++) {
-                // 각 내부 벌집은 같은 열의 첫 번째 행 값과 동일하게 설정
-                // 이는 성장 패턴의 특성 때문임 (항상 위쪽 값이 최댓값이 됨)
-                map[i][j] = map[0][j];
-            }
+    private static long countPatties(int level, long x) {
+        // 기저 사례: 레벨 0 햄버거는 패티 하나
+        if (level == 0) return patties[0];
+
+        // 첫 번째 빵만 먹었을 경우
+        if (x == 1) return 0;
+
+        // 햄버거 구조: B + [레벨 L-1 햄버거] + P + [레벨 L-1 햄버거] + B
+
+        // 케이스 1: 첫 번째 빵과 첫 번째 레벨 L-1 햄버거의 일부를 먹은 경우
+        if (x <= 1 + burger[level - 1]) {
+            return countPatties(level - 1, x - 1);  // 빵 이후부터의 패티 개수 계산
         }
+
+        // 케이스 2: 첫 번째 빵, 첫 번째 레벨 L-1 햄버거, 중간 패티까지 먹은 경우
+        if (x == 1 + burger[level - 1] + 1) {
+            return patties[level - 1] + 1;  // 첫 번째 레벨 L-1 햄버거의 패티 + 중간 패티
+        }
+
+        // 케이스 3: 첫 번째 빵, 첫 번째 레벨 L-1 햄버거, 중간 패티, 두 번째 레벨 L-1 햄버거의 일부를 먹은 경우
+        if (x <= 1 + burger[level - 1] + 1 + burger[level - 1]) {
+            // 첫 번째 레벨 L-1 햄버거의 패티 + 중간 패티 + 두 번째 레벨 L-1 햄버거에서 먹은 패티
+            return patties[level - 1] + 1 + countPatties(level - 1, x - (1 + burger[level - 1] + 1));
+        }
+
+        // 케이스 4: 햄버거 전체를 먹은 경우
+        return patties[level];  // 전체 패티 개수
     }
 }
