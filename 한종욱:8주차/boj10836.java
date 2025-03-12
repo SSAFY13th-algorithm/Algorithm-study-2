@@ -1,123 +1,106 @@
 import java.io.*;
 import java.util.*;
-
-/**
- * 백준 17265번 - 나의 인생에는 수학과 함께
- *
- * 문제 개요:
- * - N×N 크기의 격자에 숫자(0-5)와 연산자(+,-,*)가 교대로 채워져 있음
- * - 좌상단(0,0)에서 우하단(N-1,N-1)까지 이동
- * - 이동 방향은 오른쪽과 아래쪽만 가능
- * - 경로에서 만난 숫자와 연산자를 순서대로 계산
- * - 가능한 모든 경로 중에서 최댓값과 최솟값을 구하는 문제
- */
-public class boj10836 {
+import java.awt.*;
+public class Main {
+    // 입출력을 위한 버퍼 리더와 라이터 선언
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    // 이동 방향 (오른쪽, 아래쪽)
-    private static final int[] dx = {1, 0};
-    private static final int[] dy = {0, 1};
+    private static final StringBuilder sb = new StringBuilder();
 
-    private static char[][] map;    // 격자 맵 (숫자와 연산자)
-    private static int n;           // 격자 크기
-    private static int max, min;    // 최댓값, 최솟값
+    // 맵과 성장 정보를 저장할 2차원 배열
+    private static int[][] map;    // 각 위치의 높이를 저장하는 배열
+    private static int[][] grow;   // 성장 정보를 저장하는 배열
 
-    /**
-     * 메인 메소드
-     * 입력 처리 후 DFS로 모든 경로 탐색
-     */
+    // 맵 크기(m)와 날짜 수(n)
+    private static int n, m;
+
     public static void main(String[] args) throws IOException {
-        // 입력 처리 및 초기화
+        // 초기화 함수 호출
         init();
 
-        // DFS로 모든 가능한 경로 탐색
-        // 시작점(0,0)의 값을 초기 결과로 설정, 연산자는 아직 없으므로 'a'로 임시 설정
-        DFS(0, 0, map[0][0] - '0', 'a');
+        // n일 동안 첫 번째 성장 처리
+        for (int day = 0; day < n; day++) {
+            firstGrow(day);
+        }
 
-        // 결과 출력
-        bw.write(max + " " + min + "\n");
+        // 다른 위치의 성장 처리
+        otherGrow();
+
+        // 결과 맵을 문자열로 변환하여 출력 준비
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < m; j++) {
+                sb.append(map[i][j]).append(" ");
+            }
+            // 마지막 공백 제거하고 줄바꿈 추가
+            sb.setLength(sb.length() - 1);
+            sb.append("\n");
+        }
+
+        // 최종 결과 출력 및 리소스 해제
+        bw.write(sb.toString());
         bw.flush();
         bw.close();
         br.close();
     }
 
-    /**
-     * 입력을 처리하고 변수들을 초기화하는 메소드
-     */
+    // 초기화 함수: 입력을 받아 맵과 성장 정보 초기화
     private static void init() throws IOException {
-        // 격자 크기 입력
-        n = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        m = Integer.parseInt(st.nextToken());  // 맵 크기
+        n = Integer.parseInt(st.nextToken());  // 날짜 수
 
-        // 최댓값과 최솟값 초기화 (가능한 범위를 고려하여 설정)
-        // 최대 5^5 = 3125, 최소 -3125
-        max = -3125;
-        min = 3125;
+        // 맵과 성장 정보 배열 초기화
+        map = new int[m][m];      // m x m 크기의 맵
+        grow = new int[n][3];     // n일 동안의 성장 정보(각 일자별로 3가지 성장 유형)
 
-        // 격자 맵 초기화 및 입력
-        map = new char[n][n];
+        // 맵을 1로 초기화 (모든 위치의 초기 높이는 1)
+        for (int i = 0; i < m; i++) {
+            Arrays.fill(map[i], 1);
+        }
+
+        // n일 동안의 성장 정보 입력 받기
         for (int i = 0; i < n; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < n; j++) {
-                map[i][j] = st.nextToken().charAt(0);
-            }
+            st = new StringTokenizer(br.readLine());
+            grow[i][0] = Integer.parseInt(st.nextToken());  // 첫 번째 성장 유형의 수
+            grow[i][1] = Integer.parseInt(st.nextToken());  // 두 번째 성장 유형의 수
+            grow[i][2] = Integer.parseInt(st.nextToken());  // 세 번째 성장 유형의 수
         }
     }
 
-    /**
-     * DFS로 모든 가능한 경로를 탐색하는 메소드
-     * @param x 현재 x좌표
-     * @param y 현재 y좌표
-     * @param result 현재까지의 계산 결과
-     * @param op 마지막으로 만난 연산자 (초기값 'a'는 연산자가 없음을 의미)
-     */
-    private static void DFS(int x, int y, int result, char op) {
-        // 목적지에 도달했을 때 최댓값, 최솟값 갱신
-        if (x == n - 1 && y == n - 1) {
-            max = Math.max(max, result);
-            min = Math.min(min, result);
-            return;
+    // 첫 번째 성장 처리 함수 (특정 일자의 성장 정보 적용)
+    private static void firstGrow(int day) {
+        int index = 0;  // 성장 유형 인덱스
+
+        // 왼쪽 세로 경계선(아래에서 위로) 성장 처리
+        for (int i = m - 1; i > 0; i--) {
+            // 해당 성장 유형의 남은 수가 0이면 다음 유형으로 이동
+            while (grow[day][index] == 0) index++;
+            // 현재 위치에 성장 유형 인덱스만큼 높이 증가
+            map[i][0] += index;
+            // 해당 성장 유형 사용 횟수 감소
+            grow[day][index]--;
         }
 
-        // 가능한 두 방향(오른쪽, 아래쪽)으로 탐색
-        for (int i = 0; i < 2; i++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-
-            // 격자 범위를 벗어나면 건너뜀
-            if (OOB(nx, ny)) continue;
-
-            // 숫자인 경우 (0-5)
-            if (map[nx][ny] >= '0' && map[nx][ny] <= '5') {
-                int num = map[nx][ny] - '0';
-
-                // 이전 연산자에 따라 계산 후 다음 DFS 호출
-                // 연산자가 없는 경우('a')는 첫 번째 숫자이므로 계산하지 않음
-                if (op == '+') {
-                    DFS(nx, ny, result + num, 'a'); // 덧셈 수행
-                } else if (op == '-') {
-                    DFS(nx, ny, result - num, 'a'); // 뺄셈 수행
-                } else if (op == '*') {
-                    DFS(nx, ny, result * num, 'a'); // 곱셈 수행
-                } else {
-                    // 첫 번째 숫자인 경우 (op가 'a'인 경우)
-                    DFS(nx, ny, num, 'a');
-                }
-            }
-            // 연산자인 경우 (+, -, *)
-            else {
-                // 현재 연산자를 저장하고 결과는 변경하지 않음
-                DFS(nx, ny, result, map[nx][ny]);
-            }
+        // 위쪽 가로 경계선(왼쪽에서 오른쪽으로) 성장 처리
+        for (int i = 0; i < m; i++) {
+            // 해당 성장 유형의 남은 수가 0이면 다음 유형으로 이동
+            while (grow[day][index] == 0) index++;
+            // 현재 위치에 성장 유형 인덱스만큼 높이 증가
+            map[0][i] += index;
+            // 해당 성장 유형 사용 횟수 감소
+            grow[day][index]--;
         }
     }
 
-    /**
-     * 좌표가 격자 범위를 벗어나는지 확인하는 메소드
-     * @param nx x 좌표
-     * @param ny y 좌표
-     * @return 범위를 벗어나면 true, 그렇지 않으면 false
-     */
-    private static boolean OOB(int nx, int ny) {
-        return nx < 0 || nx > n - 1 || ny < 0 || ny > n - 1;
+    // 나머지 위치의 성장 처리 함수
+    private static void otherGrow() {
+        // 첫 번째 행을 제외한 나머지 행들을 처리
+        for (int i = 1; i < m; i++) {
+            // 첫 번째 열을 제외한 나머지 열들을 처리
+            for (int j = 1; j < m; j++) {
+                // 각 위치의 높이를 위쪽 경계(0행)의 같은 열 값으로 설정
+                map[i][j] = map[0][j];
+            }
+        }
     }
 }
