@@ -273,8 +273,8 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 | Category | Title | Link |
 | :------: | :---: | :--: |
 | 다익스트라 |  <a href="https://www.acmicpc.net/problem/2307">도로검문</a> | <a href="">🔗</a> |
-| DP |  <a href="https://www.acmicpc.net/problem/1509">팰린드롬 분</a> | <a href="">🔗</a> |
-| MST |  <a href="https://www.acmicpc.net/problem/1944">복제 로</a> | <a href="">🔗</a> |
+| DP |  <a href="https://www.acmicpc.net/problem/1509">팰린드롬 분할</a> | <a href="">🔗</a> |
+| MST |  <a href="https://www.acmicpc.net/problem/1944">복제 로봇</a> | <a href="">🔗</a> |
 <br>
 
 
