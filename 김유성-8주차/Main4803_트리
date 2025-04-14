@@ -1,0 +1,93 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	static int n, m;
+	static List<Integer>[] graph;
+	static boolean[] visited;
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+
+	public static void main(String[] args) throws IOException {
+		int t = 1;
+		while (init()) {
+			int num = 0;
+			for (int i = 1; i <= n; i++) {
+				if (!visited[i])
+					num += treeNum(i);
+			}
+			
+			if (num == 0) {
+				System.out.printf("Case %d: No trees.\n", t);
+			} else if (num == 1) {
+				System.out.printf("Case %d: There is one tree.\n", t);
+			} else {
+				System.out.printf("Case %d: A forest of %d trees.\n", t, num);
+			}
+			t++;
+		}
+
+	}
+	
+	static int treeNum(int index) {
+		Queue<Integer> q = new LinkedList<>();
+		int node = 0;
+		int edge = 0;
+		
+		q.add(index);
+		
+		while (!q.isEmpty()) {
+			int cur = q.poll();
+			
+			if (visited[cur])
+				continue;
+			visited[cur] = true;
+			node++;
+			
+			for (int i = 0; i < graph[cur].size(); i++) {
+				int next = graph[cur].get(i);
+				edge++;
+				if (!visited[next])
+					q.add(next);
+			}
+		}
+		
+		// 무방향 그래프 이기 때문에 edge / 2
+		if ((edge / 2) + 1 == node)
+			return 1;
+		else
+			return 0;
+	}
+
+	static boolean init() throws IOException {
+		st = new StringTokenizer(br.readLine());
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
+		
+		if (n == 0 && m == 0)
+			return false;
+		
+		visited = new boolean[n + 1];
+		graph = new ArrayList[n + 1];
+		for (int i = 1; i <= n; i++) {
+			graph[i] = new ArrayList<>();
+		}
+	
+		for (int i = 0; i < m; i++) {
+			st = new StringTokenizer(br.readLine());
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			
+			graph[a].add(b);
+			graph[b].add(a);
+		}
+		return true;
+	}
+}
