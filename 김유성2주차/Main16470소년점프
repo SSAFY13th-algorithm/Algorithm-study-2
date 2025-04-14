@@ -1,0 +1,95 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class Main16470소년점프 {
+
+	static int r, c;
+	static int[][] map;
+	static int[][] nsc = new int[3][2];
+
+	static int[] dh = { -1, 1, 0, 0 };
+	static int[] dw = { 0, 0, -1, 1 };
+	static int[][] nuc;
+	static int[][] swing;
+	static int[][] chang;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		r = Integer.parseInt(st.nextToken());
+		c = Integer.parseInt(st.nextToken());
+
+		// 0은 길. 1은 벽
+		map = new int[r + 1][c + 1];
+		nuc = new int[r + 1][c + 1];
+		swing = new int[r + 1][c + 1];
+		chang = new int[r + 1][c + 1];
+
+		for (int i = 1; i <= r; i++) {
+			String line = br.readLine();
+			for (int j = 1; j <= c; j++) {
+				map[i][j] = line.charAt(j - 1) - '0';
+			}
+		}
+
+		// 넉살, 스윙스, 창모 위치
+		for (int i = 0; i < 3; i++) {
+			st = new StringTokenizer(br.readLine());
+			nsc[i][0] = Integer.parseInt(st.nextToken());
+			nsc[i][1] = Integer.parseInt(st.nextToken());
+		}
+		
+		moveAkdang(nuc, nsc[0][0], nsc[0][1]);
+		moveAkdang(swing, nsc[1][0], nsc[1][1]);
+		moveAkdang(chang, nsc[2][0], nsc[2][1]);
+
+		int[] arr = new int[10000 + 1];
+
+		// 최소값을 알기 위해서
+		int min = Integer.MAX_VALUE;
+		for (int i = 1; i <= r; i++) {
+			// 3명의 악당이 만나는 지점에서 가장 오래 걸리는 악당의 시간이 그 지점에 모이는 시간이기 때문에.
+			for (int j = 1; j <= c; j++) {
+				if (nuc[i][j] != 0 && swing[i][j] != 0 && chang[i][j] != 0) {
+					int move_num = Math.max(nuc[i][j], swing[i][j]);
+					move_num = Math.max(move_num, chang[i][j]);
+					arr[move_num]++;
+					min = Math.min(move_num, min);
+				}
+			}
+		}
+		// 만나는 지점이 없으면 min이 갱신되지 않음
+		if (min == Integer.MAX_VALUE)
+			System.out.println(-1);
+		else {
+			System.out.println(min - 1);
+			System.out.println(arr[min]);
+		}
+
+	}
+
+	static void moveAkdang(int[][] ak_map, int h, int w) {
+		Queue<int[]> check = new LinkedList<>();
+		int num = 1;
+		ak_map[h][w] = num;
+		check.add(new int[] {h, w, num});
+
+		while (!check.isEmpty()) {
+			int[] hw = check.poll();
+
+			for (int i = 0; i < 4; i++) {
+				int nh = hw[0] + dh[i];
+				int nw = hw[1] + dw[i];
+				if (nh > 0 && nw > 0 && nh <= r && nw <= c && map[nh][nw] == 0 && ak_map[nh][nw] == 0) {
+					ak_map[nh][nw] = hw[2] + 1;
+					check.add(new int[] {nh, nw, hw[2] + 1});
+				}
+			}
+		}
+
+	}
+}
