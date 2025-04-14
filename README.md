@@ -307,7 +307,7 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 | Category | Title | Link |
 | :------: | :---: | :--: |
 | 빡구현 |  <a href="https://www.acmicpc.net/problem/23290">마법사 상어와 복제</a> | <a href="">🔗</a> |
-| 플로이드-워셜 |  <a href="https://www.acmicpc.net/problem/7682">틱택토</a> | <a href="">🔗</a> |
+| 플로이드-워셜 |  <a href="https://www.acmicpc.net/problem/1507">궁금한 민호</a> | <a href="">🔗</a> |
 | 이분 탐색 |  <a href="https://www.acmicpc.net/problem/1561">놀이 공원</a> | <a href="">🔗</a> |
 | 그래프 |  <a href="https://www.acmicpc.net/problem/16940">BFS 스페셜 저지</a> | <a href="">🔗</a> |
 | 빡구현 |  <a href="https://www.acmicpc.net/problem/19236">청소년 상어</a> | <a href="">🔗</a> |
