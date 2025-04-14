@@ -318,7 +318,7 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 | :------: | :---: | :--: |
 | KMP |  <a href="https://www.acmicpc.net/problem/10266">시계 사진들</a> | <a href="">🔗</a> |
 | 다익스트라 |  <a href="https://www.acmicpc.net/problem/16118">달빛 여우</a> | <a href="">🔗</a> |
-| 완탐 |  <a href="https://www.acmicpc.net/problem/17825">주사위 윷놀</a> | <a href="">🔗</a> |
+| 완탐 |  <a href="https://www.acmicpc.net/problem/17825">주사위 윷놀이</a> | <a href="">🔗</a> |
 <br>
 
 
