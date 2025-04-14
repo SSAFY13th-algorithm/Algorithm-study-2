@@ -300,6 +300,28 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 <br>
 
 
+```
+김유성 -> 허민권 -> 권혁준 -> 유병규 -> 한종욱 -> 김유성
+```
+### Week 13 (25.04.14 ~ 25.04.21)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| 빡구현 |  <a href="https://www.acmicpc.net/problem/23290">마법사 상어와 복제</a> | <a href="">🔗</a> |
+| 플로이드-워셜 |  <a href="https://www.acmicpc.net/problem/7682">틱택토</a> | <a href="">🔗</a> |
+| 이분 탐색 |  <a href="https://www.acmicpc.net/problem/1561">놀이 공원</a> | <a href="">🔗</a> |
+| 그래프 |  <a href="https://www.acmicpc.net/problem/16940">BFS 스페셜 저지</a> | <a href="">🔗</a> |
+| 빡구현 |  <a href="https://www.acmicpc.net/problem/19236">청소년 상어</a> | <a href="">🔗</a> |
+<br>
+
+### Week 13 Additional (25.04.14 ~ 25.04.21)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| KMP |  <a href="https://www.acmicpc.net/problem/10266">시계 사진들</a> | <a href="">🔗</a> |
+| 다익스트라 |  <a href="https://www.acmicpc.net/problem/16118">달빛 여우</a> | <a href="">🔗</a> |
+| 완탐 |  <a href="https://www.acmicpc.net/problem/17825">주사위 윷놀</a> | <a href="">🔗</a> |
+<br>
+
+
 
 ## 😊코드 리뷰 규칙 
 ### 1. 코드 리뷰 순서
