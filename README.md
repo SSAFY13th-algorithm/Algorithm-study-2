@@ -322,6 +322,28 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 <br>
 
 
+```
+한종욱 -> 권혁준 -> 김유성 -> 유병규 -> 허민권 -> 한종욱
+```
+### Week 14 (25.04.21 ~ 25.04.28)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| 이분 탐색 |  <a href="https://www.acmicpc.net/problem/1114">통나무 자르기</a> | <a href="">🔗</a> |
+| DP |  <a href="https://www.acmicpc.net/problem/1695">팰린드롬 만들기</a> | <a href="">🔗</a> |
+| 그리디 |  <a href="https://www.acmicpc.net/problem/1493">박스 채우기</a> | <a href="">🔗</a> |
+| 구현 |  <a href="https://www.acmicpc.net/problem/23289">온풍기 안녕!</a> | <a href="">🔗</a> |
+| 그래프 |  <a href="https://www.acmicpc.net/problem/16954">움직이는 미로 탈출</a> | <a href="">🔗</a> |
+<br>
+
+### Week 14 Additional (25.04.21 ~ 25.04.28)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| 자료 구조 |  <a href="https://www.acmicpc.net/problem/12764">싸지방에 간 준하</a> | <a href="">🔗</a> |
+| 완전 탐색 |  <a href="https://www.acmicpc.net/problem/14391">종이 조각</a> | <a href="">🔗</a> |
+| 최단 경로 |  <a href="https://www.acmicpc.net/problem/1445">일요일 아침의 데이트</a> | <a href="">🔗</a> |
+<br>
+
+
 
 ## 😊코드 리뷰 규칙 
 ### 1. 코드 리뷰 순서
