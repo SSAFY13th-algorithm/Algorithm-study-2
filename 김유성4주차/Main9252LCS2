@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class Main9252LCS2 {
+	
+	static int[][] dp;
+	static String A, B;
+	static String LCS;
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		A = sc.next();
+		B = sc.next();
+		
+		dp = new int [A.length() + 1][B.length() + 1];
+		
+		for (int a = 1; a <= A.length(); a++) {
+			for (int b = 1; b <= B.length(); b++) {
+				if (A.charAt(a - 1) == B.charAt(b - 1))
+					dp[a][b] = dp[a - 1][b - 1] + 1;
+				else
+					dp[a][b] = Math.max(dp[a - 1][b], dp[a][b - 1]);
+			}
+		}
+		System.out.println(dp[A.length()][B.length()]);
+		searchLCS();
+		System.out.println(LCS);
+	}
+	
+	static void searchLCS() {
+		StringBuilder sb = new StringBuilder("");
+		
+		int a = A.length();
+		int b = B.length();
+		
+		while (a > 0 && b > 0) {
+			if (A.charAt(a - 1) == B.charAt(b - 1)) {
+				sb.append(A.charAt(a - 1));
+				a--;
+				b--;
+			} else {
+				if (dp[a - 1][b] >= dp[a][b - 1]) {
+					a--;
+				} else {
+					b--;
+				}
+			}
+		}
+		LCS = sb.reverse().toString();
+	}
+}
