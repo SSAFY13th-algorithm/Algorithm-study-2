@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class Main {
+	static int N;
+	static long X, patty = 1L, dp_b[], dp_p[];
+
+	public static void main(String[] args) {
+		init();
+		getEnd();
+		patty = dp_p[N];
+		getBugger(N);
+		System.out.println(patty);
+	}
+
+	static void init(){
+		Scanner sc = new Scanner(System.in);
+		N = sc.nextInt();
+		X = sc.nextLong();
+		dp_b = new long [N + 1];
+		dp_p = new long [N + 1];
+	}
+	
+	static void getEnd() {
+		int n = 1;
+		dp_b[0] = 1;
+		dp_p[0] = 1;
+		while (n <= N) {
+			dp_b[n] = dp_b[n - 1] * 2 + 3;
+			dp_p[n] = dp_p[n - 1] * 2 + 1;
+			n++;
+		}
+	}
+	
+	// bN * 2 + 3이 총 레이어 개수
+	static void getBugger(int n) {
+		if (n == 0)
+			return;
+		
+		long start = 1, end = dp_b[n];
+		long mid = (start + end) / 2;
+		
+		if (X == start) {
+			patty -= dp_p[n];
+			return;
+		} else if (X == end) {
+			return;
+		}
+		
+		if (X == mid) {
+			patty -= dp_p[n - 1];
+			return;
+		} else if (X < mid) {
+			patty -= (dp_p[n - 1] + 1);
+			X -= 1;
+			getBugger(n - 1);
+		} else {
+			X -= mid;
+			getBugger(n - 1);
+		}
+		
+	}
+}
