@@ -1,0 +1,80 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+
+	static int N, M, map[][];
+	static long dp[][][];
+
+	public static void main(String[] args) throws IOException {
+		init();
+		dp();
+		getMin();
+	}
+
+	static void getMin() {
+		long min = Long.MAX_VALUE;
+
+		for (int m = 1; m <= M; m++) {
+			for (int i = 0; i < 3; i++) {
+				min = Math.min(min, dp[N -1][m][i]);
+			}
+		}
+		System.out.println(min);
+	}
+
+	static void dp() {
+		for (int n = 1; n < N; n++) {
+			for (int i = 0; i < 3; i++) {
+				dp[n][0][i] = Integer.MAX_VALUE;
+				dp[n][M + 1][i] = Integer.MAX_VALUE;
+			}
+				
+			for (int m = 1; m <= M; m++) {
+				
+				
+				long min1 = Math.min(dp[n - 1][m + 1][1], dp[n - 1][m + 1][2]);
+				dp[n][m][0] = map[n][m] + min1;
+
+				
+				long min2 = Math.min(dp[n - 1][m][0], dp[n - 1][m][2]);
+				dp[n][m][1] = map[n][m] + min2;
+
+				
+				long min3 = Math.min(dp[n - 1][m - 1][0], dp[n - 1][m - 1][1]);
+				dp[n][m][2] = map[n][m] + min3;
+			}
+		}
+		
+	}
+
+	static void init() throws IOException {
+		st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+
+		map = new int[N][M + 2];
+		dp = new long[N][M + 2][3];
+		for (int n = 0; n < N; n++) {
+			st = new StringTokenizer(br.readLine());
+			for (int m = 1; m < M + 1; m++)
+				map[n][m] = Integer.parseInt(st.nextToken());
+		}
+
+		for (int n = 0; n < N; n++) {
+			map[n][0] = Integer.MAX_VALUE;
+			map[n][M + 1] = Integer.MAX_VALUE;
+		}
+
+		for (int m = 0; m < M + 2; m++) {
+			for (int i = 0; i < 3; i++) {
+				dp[0][m][i] = map[0][m];
+			}
+		}
+
+	}
+}

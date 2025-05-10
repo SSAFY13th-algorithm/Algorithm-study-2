@@ -1,0 +1,75 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+	static int N, Q, K, set_val;
+	static long seg[];
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+
+	public static void main(String[] args) throws IOException {
+		init();
+	}
+
+	static void init() throws IOException {
+		st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		Q = Integer.parseInt(st.nextToken());
+		K = getSize();
+		
+		seg = new long [(int)Math.pow(2, K)];
+		set_val = (int)Math.pow(2, K - 1);
+		
+		for (int i = 0; i < Q; i++) {
+			st = new StringTokenizer(br.readLine());
+			int act = Integer.parseInt(st.nextToken());
+			if (act == 1) {
+				int p = Integer.parseInt(st.nextToken());
+				int x = Integer.parseInt(st.nextToken());
+				add(p, x);				
+			} else {
+				int p = Integer.parseInt(st.nextToken());
+				int q = Integer.parseInt(st.nextToken());
+				System.out.println(get(p, q));
+			}
+		}
+	}
+	
+	static int getSize() {
+		int k = 0;
+		
+		while (Math.pow(2, k) < N) {
+			k++;
+		}
+		return k + 1;
+	}
+	
+	static void add(int index, int x) {
+		index += set_val;
+		
+		while (index >= 1) {
+			seg[index] += x;
+			index /= 2;
+		}
+	}
+	
+	static long get(int start, int end) {
+		long ret = 0;
+		start += set_val;
+		end += set_val;
+		
+		while (start <= end) {
+			if (start % 2 == 1) {
+				ret += seg[start];
+			}
+			if (end % 2 == 0) {
+				ret += seg[end];
+			}
+			start = (start + 1) / 2;
+			end = (end - 1) / 2;
+		}
+		return ret;
+	}
+}
