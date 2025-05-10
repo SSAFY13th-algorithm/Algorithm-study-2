@@ -1,0 +1,68 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+
+	static int N, M, K;
+	static char[][] map;
+	static int[][] move = { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, -1 }, { 1, 0 }, { 1, 1 } };
+	static String[] string_arr;
+	static Map<String, Integer> str_memo = new HashMap<>();
+
+	public static void main(String[] args) throws IOException {
+		init();
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				makeString(i, j, 1, map[i][j] + "");
+			}
+		}
+		for (int k = 0; k < K; k++) {
+			System.out.println(str_memo.getOrDefault(string_arr[k], 0));
+		}
+	}
+
+	static void makeString(int h, int w, int cnt, String str) {
+		str_memo.put(str, str_memo.getOrDefault(str, 0) + 1);
+
+		if (cnt == 5)
+			return;
+
+		for (int i = 0; i < 8; i++) {
+			int nh = h + move[i][0];
+			int nw = w + move[i][1];
+
+			nh = (nh + N) % N;
+			nw = (nw + M) % M;
+			makeString(nh, nw, cnt + 1, str + map[nh][nw]);
+		}
+
+	}
+
+	static void init() throws IOException {
+		st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		K = Integer.parseInt(st.nextToken());
+
+		map = new char[N][M];
+		string_arr = new String[K];
+
+		for (int i = 0; i < N; i++) {
+			String line = br.readLine();
+			for (int j = 0; j < M; j++) {
+				map[i][j] = line.charAt(j);
+			}
+		}
+
+		for (int k = 0; k < K; k++) {
+			string_arr[k] = br.readLine();
+		}
+	}
+}
