@@ -380,6 +380,28 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 <br>
 
 
+```
+허민권 -> 김유성 -> 권혁준 -> 유병규 -> 한종욱 -> 허민권
+```
+### Week 17 (25.05.12 ~ 25.05.19)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| 구현 |  <a href="https://www.acmicpc.net/problem/15898">피아의 아틀리에 ~신비한 대회의 연금술사~</a> | <a href="">🔗</a> |
+| 시뮬레이션 |  <a href="https://www.acmicpc.net/problem/17837">새로운 게임 2</a> | <a href="">🔗</a> |
+| 자료 구조 |  <a href="https://www.acmicpc.net/problem/11085">군사 이동</a> | <a href="">🔗</a> |
+| DP |  <a href="https://www.acmicpc.net/problem/12784">인하니카 공화국</a> | <a href="">🔗</a> |
+| 그리디 |  <a href="https://www.acmicpc.net/problem/8980">택배</a> | <a href="">🔗</a> |
+<br>
+
+### Week 17 Additional (25.05.12 ~ 25.05.19)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| BFS |  <a href="https://www.acmicpc.net/problem/2842">집배원 한상덕</a> | <a href="">🔗</a> |
+| 구현 |  <a href="https://www.acmicpc.net/problem/23291">어항 정리</a> | <a href="">🔗</a> |
+| 문자열 |  <a href="https://www.acmicpc.net/problem/1701">Cubeditor</a> | <a href="">🔗</a> |
+<br>
+
+
 ## 😊코드 리뷰 규칙 
 ### 1. 코드 리뷰 순서
 
