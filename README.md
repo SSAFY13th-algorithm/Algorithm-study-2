@@ -402,6 +402,20 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 <br>
 
 
+```
+허민권 -> 김유성 -> 권혁준 -> 유병규 -> 한종욱 -> 허민권
+```
+### Week 18 (25.05.19 ~ 25.05.26)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| 시뮬레이션 |  <a href="https://www.acmicpc.net/problem/21611">마법사 상어와 블리자드</a> | <a href="">🔗</a> |
+| 자료 구조 |  <a href="https://www.acmicpc.net/problem/2461">대표 선수</a> | <a href="">🔗</a> |
+| 그래프 |  <a href="https://www.acmicpc.net/problem/9470">Strahler 순서</a> | <a href="">🔗</a> |
+| DP |  <a href="https://www.acmicpc.net/problem/2169">로봇 조종하기</a> | <a href="">🔗</a> |
+| 그리디 |  <a href="https://www.acmicpc.net/problem/9576">책 나눠주기</a> | <a href="">🔗</a> |
+<br>
+
+
 ## 😊코드 리뷰 규칙 
 ### 1. 코드 리뷰 순서
 
