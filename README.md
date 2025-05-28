@@ -416,6 +416,21 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 <br>
 
 
+```
+유병규 -> 권혁준 -> 한종욱 -> 김유성 -> 허민권 -> 유병규
+```
+### Week 19 (25.05.28 ~ 25.06.02)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| 이분 탐색 |  <a href="https://www.acmicpc.net/problem/1508">레이스</a> | <a href="">🔗</a> |
+| 자료 구조 |  <a href="https://www.acmicpc.net/problem/2696">중앙값 구하기</a> | <a href="">🔗</a> |
+| BFS |  <a href="https://www.acmicpc.net/problem/14867">물통</a> | <a href="">🔗</a> |
+| 분리 집합 |  <a href="https://www.acmicpc.net/problem/3108">로고</a> | <a href="">🔗</a> |
+| DP |  <a href="https://www.acmicpc.net/problem/9177">단어 섞기</a> | <a href="">🔗</a> |
+<br>
+
+
+
 ## 😊코드 리뷰 규칙 
 ### 1. 코드 리뷰 순서
 
