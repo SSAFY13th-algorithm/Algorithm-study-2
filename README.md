@@ -430,6 +430,20 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 <br>
 
 
+```
+김유성 -> 유병규 -> 한종욱 -> 권혁준 -> 허민권 -> 김유성
+```
+### Week 20 (25.06.02 ~ 25.06.09)
+| Category | Title | Link |
+| :------: | :---: | :--: |
+| DP |  <a href="https://www.acmicpc.net/problem/2306">유전자</a> | <a href="">🔗</a> |
+| 그래프 |  <a href="https://www.acmicpc.net/problem/2637">장난감 조립</a> | <a href="">🔗</a> |
+| 자료 구조 |  <a href="https://www.acmicpc.net/problem/21276">계보 복원가 호석</a> | <a href="">🔗</a> |
+| 그리디 |  <a href="https://www.acmicpc.net/problem/25381">ABBC</a> | <a href="">🔗</a> |
+| 이분 탐색 |  <a href="https://www.acmicpc.net/problem/6209">제자리 멀리뛰기</a> | <a href="">🔗</a> |
+<br>
+
+
 
 ## 😊코드 리뷰 규칙 
 ### 1. 코드 리뷰 순서
