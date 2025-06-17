@@ -453,7 +453,7 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 | 그래프 |  <a href="https://www.acmicpc.net/problem/1033">칵테일</a> | <a href="">🔗</a> |
 | DP |  <a href="https://www.acmicpc.net/problem/3114">사과와 바나나</a> | <a href="">🔗</a> |
 | 자료 구조 |  <a href="https://www.acmicpc.net/problem/22866">탑 보기</a> | <a href="">🔗</a> |
-| 시뮬레이션 |  <a href="https://www.acmicpc.net/problem/20061">시뮬레이션</a> | <a href="">🔗</a> |
+| 시뮬레이션 |  <a href="https://www.acmicpc.net/problem/20061">모노미노도미노 2</a> | <a href="">🔗</a> |
 | 그리디 |  <a href="https://www.acmicpc.net/problem/24337">가희와 탑</a> | <a href="">🔗</a> |
 <br>
 
