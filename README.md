@@ -467,7 +467,7 @@ https://github.com/tony9402/baekjoon &&  https://www.acmicpc.net/group/workbook/
 | DP |  <a href="https://www.acmicpc.net/problem/4198">열차정렬</a> | <a href="">🔗</a> |
 | 시뮬레이션 |  <a href="https://www.acmicpc.net/problem/8982">수족관 1</a> | <a href="">🔗</a> |
 | 이분 탐색 |  <a href="https://www.acmicpc.net/problem/20191">줄임말</a> | <a href="">🔗</a> |
-| 그래프 |  <a href="https://www.acmicpc.net/problem/20061">전단지 돌리기</a> | <a href="">🔗</a> |
+| 그래프 |  <a href="https://www.acmicpc.net/problem/19542">전단지 돌리기</a> | <a href="">🔗</a> |
 | 완탐 |  <a href="https://www.acmicpc.net/problem/1079">마피아</a> | <a href="">🔗</a> |
 <br>
 
