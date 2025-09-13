@@ -1,0 +1,45 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main20207달력 {
+	
+	static int N, S, E;
+	static int[] days = new int[367]; 
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+	
+	public static void main(String[] args) throws IOException {
+		N = Integer.parseInt(br.readLine());
+		for (int n = 1; n <= N; n++) {
+			st = new StringTokenizer(br.readLine());
+			S = Integer.parseInt(st.nextToken());
+			E = Integer.parseInt(st.nextToken());
+			for (int i = S; i <= E; i++) {
+				days[i]++;
+			}
+		}
+		getArea();
+	}
+	
+	static void getArea() {
+		int h = 0, w = 0; // h는 일정의 수만큼 w는 연속되는 일정만큼
+		
+		int area = 0;
+		for (int i = 1; i <= 366; i++) {
+			int day = days[i];
+			if (day == 0) { // 아무 일정도 없으면 지금까지 구한 면적만큼 더하고 초기화
+				area += h * w;
+				h = 0;
+				w = 0;
+			} else {
+				h = Math.max(h, day);
+				w++;
+			}
+		}
+		System.out.println(area);
+	}
+
+}
+// 주의할 점: 365일까지만 검사하면 365일까지 일정이 있는 경우 반영이 안된다. -> 366까지 확인하도록
