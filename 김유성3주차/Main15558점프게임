@@ -1,0 +1,68 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class Main15558점프게임 {
+
+	static int n, k;
+	static int[][] left_right;
+	static int[][] visited;
+	
+	static int clear = 0; // clear가 1번이라도 이루어지면 이후의 BFS를 막는다.
+	static Queue<int[]> move = new LinkedList<int[]>();
+	static int time = 0;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		n = Integer.parseInt(st.nextToken());
+		k = Integer.parseInt(st.nextToken());
+
+		left_right = new int[2][n + 1];
+		visited = new int[2][n + 1];
+
+		for (int a = 0; a < 2; a++) {
+			String line = br.readLine();
+			for (int i = 1; i <= n; i++) {
+				left_right[a][i] = line.charAt(i - 1) - '0';
+			}
+		}
+		move.add(new int[] {0, 1});
+		bfs();
+
+		if (clear != 0)
+			System.out.println(1);
+		else
+			System.out.println(0);
+	}
+
+  //bfs를 돌 때, 3가지의 행동 중에서 수행 가능한 행동을 queue에 넣어준다.
+	static void bfs() {
+		while(!move.isEmpty() ) {
+			int num = move.size();
+			for (int i = 0; i < num; i++) {
+				int[] user = move.poll();
+				
+				int left_or_right = user[0];
+				int index = user[1];
+
+				if (index > n) {
+					clear++;
+					return;
+				}
+				if (index <= time || left_right[left_or_right][index] == 0 || visited[left_or_right][index] == 1)
+					continue;
+				
+				visited[left_or_right][index] = 1;
+				move.add(new int[] {left_or_right, index + 1});
+				move.add(new int[] {left_or_right, index - 1});
+				move.add(new int[] {left_or_right == 0 ? 1 : 0, index + k});
+			}
+			time++;
+		}
+	}
+
+}

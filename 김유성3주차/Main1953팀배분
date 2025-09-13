@@ -1,0 +1,73 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.StringTokenizer;
+
+public class Main1953팀배분 {
+	
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+	static int n;
+	static int[] blue = new int[101];
+	static int[] white = new int[101];
+	static int[][] people;
+	
+	public static void main(String[] args) throws IOException {
+		n = Integer.parseInt(br.readLine());
+		people = new int[n + 1][];
+		
+		for (int i = 1; i <= n; i++) {
+			st = new StringTokenizer(br.readLine());
+			int hate_num = Integer.parseInt(st.nextToken());
+			setPeople(i, hate_num); //사람마다 싫어하는 사람의 수가 다르기 때문에 함수로 만들어서 입력해준다.
+		}
+
+    //for문을 돌면서 청팀, 백팀에 넣어준다.
+		for (int i = 1; i <=n; i++)
+			setBlueWhite(i, true);
+		
+		// 출력할 때, StringBuilder에 하나로 묶어서 마지막에 출력.
+		StringBuilder sb = new StringBuilder(blue[0] + "\n");
+		for (int i = 1; i <= n; i++) {
+			if (blue[i] != 0)
+				sb.append(i + " ");
+		}
+		sb.append("\n");
+		
+		sb.append(white[0] + "\n");
+		for (int i = 1; i <= n; i++) {
+			if (white[i] != 0)
+				sb.append(i + " ");
+		}
+		System.out.println(sb);
+	}
+	
+	static void setPeople(int index, int num) {
+		int number;
+		people[index] = new int[num];
+		for (int i = 0; i < num; i++) {
+			number = Integer.parseInt(st.nextToken());
+			people[index][i] = number;
+		}
+	}
+
+	static void setBlueWhite(int index, boolean isBlue) {
+		if (blue[index] != 0 || white[index] != 0) { // 이미 팀에 배정되어 있으면 return;
+			return;
+		}
+		if (isBlue) {// isBlue가 true면 청팀으로, 아니면 백팀으로 넣어준다.
+			blue[index]++;
+			blue[0]++;
+			for (int hate : people[index]) { // 이 사람이 싫어하는 사람은 반대팀으로 넣어준다.
+				setBlueWhite(hate, false);
+			}
+		} else {
+			white[index]++;
+			white[0]++;
+			for (int hate: people[index]) { // 이 사람이 싫어하는 사람은 반대팀으로 넣어준다.
+				setBlueWhite(hate, true);
+			}
+		}
+	}
+}
