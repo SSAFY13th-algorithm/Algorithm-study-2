@@ -1,0 +1,56 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.StringTokenizer;
+
+public class Main13325이진트리 {
+	
+	static int k, ret;
+	static List<int[]> tree = new LinkedList<>();
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		k = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
+
+    // input값을 저장. 진짜 트리로는 하지 않았고 배열을 이용해 탐색할 때 비슷하게 탐색할 수 있도록 했다.
+    /*
+      2 2 2 1 1 3이 들어오면
+      [2, 2] 를 저장하고
+      [2, 1, 1, 3]을 저장하는 식으로
+    */
+		for (int i = 1; i <= k; i++) {
+			int[] arr = new int [(int)Math.pow(2, i) + 1];
+
+			for (int j = 1; j <= Math.pow(2, i); j++) {
+				arr[j] = Integer.parseInt(st.nextToken());
+			}
+			tree.add(arr);
+		}
+
+		bottomUp();
+		int[] top = tree.get(0);
+		int top_max = Math.max(top[1], top[2]);
+		System.out.println(ret + top_max * 2);
+	}
+	
+	// 배열을 밑에서 부터 2개씩 탐색해서 위의 값과 비교할 수 있도록 만들어준다.
+	static void bottomUp() {
+		for (int i = 1; i < k; i++) {
+			int[] child = tree.get(k - i); //맨 아래 배열을 가져온다.
+			int[] parent = tree.get(k - i - 1);
+			
+			for (int j = 1; j <= child.length - 2; j += 2) {
+				int child_1 = child[j];
+				int child_2 = child[j + 1];				
+				int child_diff = Math.abs(child_1 - child_2);
+				int child_max = Math.max(child_1, child_2);
+				ret += child_max;
+				parent[(j + 1) / 2] += child_max;
+			}
+		}
+	}
+	
+}
