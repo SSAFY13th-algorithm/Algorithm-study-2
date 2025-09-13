@@ -1,0 +1,77 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	static int A, B, N, M;
+	static int[] dx;
+	static int[] bridge = new int[100_001];
+	static boolean[] visited = new boolean [100_001];
+
+
+	public static void main(String[] args) throws IOException {
+		init();
+		move();
+		System.out.println(bridge[M]);
+	}
+
+	static void init() throws IOException {
+		Scanner sc = new Scanner(System.in);
+		A = sc.nextInt();
+		B = sc.nextInt();
+		N = sc.nextInt();
+		M = sc.nextInt();
+		
+		dx = new int[] {A, B, -A, -B, 1, -1};
+	}
+
+	static void move() {
+		Queue<Integer> q = new LinkedList<Integer>();
+		
+		int nx = 0;
+		q.add(N);
+		visited[N] = true;
+		
+		while (!q.isEmpty()) {
+			
+			int position = q.poll();
+			if (position == M) {
+				return ;
+			}
+			
+			nx = position * A;
+			if (isMove(nx)) {
+				q.add(nx);
+				bridge[nx] = bridge[position] + 1;
+				visited[nx] = true;				
+			}
+			nx = position * B;
+			if (isMove(nx)) {
+				q.add(nx);
+				bridge[nx] = bridge[position] + 1;
+				visited[nx] = true;	
+			}
+			
+			for (int i = 0; i < dx.length; i++) {
+				nx = position + dx[i];
+				if (isMove(nx)) {
+					q.add(nx);
+					bridge[nx] = bridge[position] + 1;
+					visited[nx] = true;
+				}
+			}
+		}
+	}
+	
+	static boolean isMove(int nx) {
+		if (nx >= 0 && nx <= 100_000 && !visited[nx]) {
+			return true;
+		}
+		return false;
+	}
+}
