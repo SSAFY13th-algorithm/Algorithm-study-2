@@ -1,0 +1,59 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	static int N;
+	static int[] dp;
+	static String input;
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+
+	public static void main(String[] args) throws IOException {
+		init();
+		solve();
+		System.out.println(dp[N]);
+	}
+	
+	static void solve() {
+		dp[1] = 0;
+		for (int i = 1; i <= N - 1; i++) {
+			char prev = input.charAt(i - 1);
+			if (dp[i] == -1)
+				continue;
+			
+			for (int j = i + 1; j <= N; j++) {
+				char next = input.charAt(j - 1);
+				
+				if (prev == 'B' && next == 'O') {
+					if (dp[j] == -1)
+						dp[j] = dp[i] + (j - i) * (j - i);
+					else
+						dp[j] = Math.min(dp[j], dp[i] + (j - i) * (j - i));
+					 
+				} else if (prev == 'O' && next == 'J') {
+					if (dp[j] == -1)
+						dp[j] = dp[i] + (j - i) * (j - i);
+					else
+						dp[j] = Math.min(dp[j], dp[i] + (j - i) * (j - i));
+					
+				} else if (prev == 'J' && next == 'B') {
+					if (dp[j] == -1)
+						dp[j] = dp[i] + (j - i) * (j - i);
+					else
+						dp[j] = Math.min(dp[j], dp[i] + (j - i) * (j - i));
+				}
+			}
+		}
+	}
+
+	static void init() throws IOException {
+		N = Integer.parseInt(br.readLine());
+		dp = new int [N + 1];
+		Arrays.fill(dp, -1);
+		input = br.readLine();
+	}
+}
