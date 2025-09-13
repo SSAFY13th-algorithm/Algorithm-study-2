@@ -1,0 +1,74 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+
+	static int N, M, L;
+	static List<Integer> between = new ArrayList<>();
+
+	public static void main(String[] args) throws IOException {
+		init();
+		getMax();
+	}
+
+	static void getMax() {
+		int start = 1, end = between.get(between.size() - 1);
+		int mid = 0;
+		while (start <= end) {
+			mid = (start + end) / 2;
+
+			// 몇개까지 가능한지 체크. M보다 크거나 같으면 -> 이 때만 확인
+			int num = 0;
+			for (int len : between) {
+				num += (len - 1) / mid;
+			}
+			if (num <= M) {
+				end = mid - 1;
+			} else {
+				start = mid + 1;
+			}
+		}
+		System.out.println(start);
+	}
+
+
+	static void init() throws IOException {
+		st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		L = Integer.parseInt(st.nextToken());
+
+		between = new ArrayList<>();
+		int[] rest = new int[N + 2];
+
+		st = new StringTokenizer(br.readLine());
+		for (int n = 0; n < N; n++) {
+			int input = Integer.parseInt(st.nextToken());
+			rest[n + 1] = input;
+		}
+		rest[0] = 0;
+		rest[N + 1] = L;
+
+		Arrays.sort(rest);
+//		System.out.println(Arrays.toString(rest));
+		for (int i = 0; i < N + 1; i++) {
+			int a = rest[i];
+			int b = rest[i + 1];
+			between.add(b - a);
+		}
+		Collections.sort(between);
+//		System.out.println(between.toString());
+	}
+
+}

@@ -1,0 +1,77 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+	static int[] parents, friends_num;
+	public static void main(String[] args) throws IOException {
+		int T = Integer.parseInt(br.readLine());
+		while (T-- > 0) {
+			init();
+		}
+	}
+
+	static void init() throws IOException {
+		int F = Integer.parseInt(br.readLine());
+		Map<String, Integer> relation = new HashMap<>();
+		parents = new int [F * 2];
+		friends_num = new int [F * 2];
+				
+		if (F == 0)
+			System.out.println(0);
+		
+		Arrays.fill(friends_num, 1);
+		for (int i = 0; i < F * 2; i++) {
+			parents[i] = i;
+		}
+		
+		int index = 0;
+		for (int f = 0; f < F; f++) {
+			st = new StringTokenizer(br.readLine());
+			String a = st.nextToken();
+			String b = st.nextToken();
+
+			int num_a = relation.getOrDefault(a, index++);
+			int num_b = relation.getOrDefault(b, index++);
+			
+			relation.put(a, num_a);
+			relation.put(b, num_b);
+			
+			num_a = find(num_a);
+			num_b = find(num_b);
+			
+			if (num_a == num_b)
+				System.out.println(friends_num[num_a]);
+			else
+				System.out.println(friends_num[union(num_a, num_b)]);
+			
+		}
+	}
+	
+	static int find(int i) {
+		if (parents[i] == i)
+			return i;
+		return parents[i] = find(parents[i]);
+	}
+	
+	 static int union(int a, int b) {
+		 a = find(a);
+		 b = find(b);
+		 if (a < b) {
+			 friends_num[a] += friends_num[b];
+			 return parents[b] = a;
+		 }
+		 friends_num[b] += friends_num[a];
+		 return parents[a] = b;
+		 
+	 }
+}

@@ -1,0 +1,68 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	static int N, M, K, ret = 0;
+	static char[][] map;
+	static List<int[]>[] alpha_index;
+	static int[][] move = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+
+	public static void main(String[] args) throws IOException {
+		init();
+		String str = br.readLine();
+		List<int[]> list = alpha_index[str.charAt(0) - 'A'];
+		for (int[] arr: list) {
+			dfs(str, arr[0], arr[1], 1);
+		}
+		System.out.println(ret);
+	}
+	
+	static void dfs(String str, int n, int m, int len) {
+		if (str.length() == len) {
+			ret++;
+			return;
+		}
+		
+		for (int i = 0; i < 4; i++) {
+			for (int k = 1; k <= K; k++) {
+				int nn = n + move[i][0] * k;
+				int nm = m + move[i][1] * k;
+
+				if (nn >= 0 && nn < N && nm >= 0 && nm < M) {
+					if (map[nn][nm] == str.charAt(len))
+						dfs(str, nn, nm, len + 1);
+				}
+			}
+		}
+	}
+
+
+	static void init() throws IOException {
+		st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		K = Integer.parseInt(st.nextToken());
+
+		map = new char[N][M];
+		alpha_index = new LinkedList[26];
+
+		for (int i = 0; i < 26; i++)
+			alpha_index[i] = new LinkedList<int[]>();
+
+		for (int n = 0; n < N; n++) {
+			String line = br.readLine();
+			for (int m = 0; m < M; m++) {
+				map[n][m] = line.charAt(m);
+				alpha_index[map[n][m] - 'A'].add(new int[] { n, m });
+			}
+		}
+	}
+}
